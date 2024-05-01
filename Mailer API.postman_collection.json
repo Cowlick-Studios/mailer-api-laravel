@@ -7,6 +7,504 @@
 	},
 	"item": [
 		{
+			"name": "Email Submissions",
+			"item": [
+				{
+					"name": "Get Submissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Submission",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Submission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "test test test",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "test.test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Submission",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "test test test",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "test.test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Submission",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Field",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "test test test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:submission_id/field",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":submission_id",
+								"field"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "submission_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Field",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "test test test",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "test.test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:submission_id/field/:field_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":submission_id",
+								"field",
+								":field_id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "submission_id",
+									"value": "1"
+								},
+								{
+									"key": "field_id",
+									"value": "31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Recipiant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "jackwoodrow99@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:submission_id/recipiant",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":submission_id",
+								"recipiant"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "submission_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Recipiant",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "test test test",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "test.test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/:submission_id/recipiant/:recipiant_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								":submission_id",
+								"recipiant",
+								":recipiant_id"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-cum",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "submission_id",
+									"value": "1"
+								},
+								{
+									"key": "recipiant_id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amet-molestiae-sunt",
+									"value": "kaka1",
+									"type": "text"
+								},
+								{
+									"key": "est-vitae",
+									"value": "kaka2",
+									"type": "text"
+								},
+								{
+									"key": "soluta-quia",
+									"value": "kaka3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/email_submission/submit/:submission_slug",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email_submission",
+								"submit",
+								":submission_slug"
+							],
+							"variable": [
+								{
+									"key": "submission_slug",
+									"value": "saepe-aperiam-et-expedita-voluptas-non-ut-sint"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "csrf-cookie",
 			"event": [
 				{

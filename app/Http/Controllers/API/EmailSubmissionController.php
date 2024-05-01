@@ -108,7 +108,7 @@ class EmailSubmissionController extends Controller
 
 		$newEmailSubmissionField = EmailSubmissionField::create([
 			'email_submission_id' => $emailSubmission->id,
-			'name' => $request->name
+			'name' => Str::slug($request->name, '-'),
 		]);
 
 		return Response([
