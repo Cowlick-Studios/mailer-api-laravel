@@ -112,7 +112,9 @@ class EmailSubmissionController extends Controller
 		]);
 
 		return Response([
-			'message' => 'New field created.'
+			'message' => 'New field created.',
+			'email_submission' => $emailSubmission,
+			'new_field' => $newEmailSubmissionField
 		], 200);
 	}
 
@@ -144,7 +146,9 @@ class EmailSubmissionController extends Controller
 		]);
 
 		return Response([
-			'message' => 'New recipiant added to submission.'
+			'message' => 'New recipiant added to submission.',
+			'email_submission' => $emailSubmission,
+			'new_recipiant' => $newEmailSubmissionRecipiant
 		], 200);
 	}
 
@@ -178,7 +182,8 @@ class EmailSubmissionController extends Controller
 
 			if($request->host() != $emailSubmission->origin){
 				return Response([
-					'message' => 'Form submission cannot occur from this origin.'
+					'message' => 'Form submission cannot occur from this origin.',
+					'origin' => $request->host()
 				], 401);
 			}
 
