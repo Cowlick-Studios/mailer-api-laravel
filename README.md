@@ -30,8 +30,8 @@ php artisan key:generate --show
 # Stop docker environment and remove volume data
 ./vendor/bin/sail down -v
 
-# Destroy database and regenerate migrations
-./vendor/bin/sail artisan migrate:fresh
+# Runs migrations on empty DB
+./vendor/bin/sail artisan migrate
 
 # Destroy database and regenerate migrations with seeding data
 ./vendor/bin/sail artisan migrate:fresh --seed
