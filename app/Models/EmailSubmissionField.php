@@ -14,6 +14,7 @@ class EmailSubmissionField extends Model
     protected $table = 'email_submission_fields';
 
 	protected $fillable = [
+		'email_submission_id',
 		'name'
 	];
 

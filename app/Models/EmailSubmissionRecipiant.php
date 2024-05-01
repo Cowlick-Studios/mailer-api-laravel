@@ -14,6 +14,7 @@ class EmailSubmissionRecipiant extends Model
     protected $table = 'email_submission_recipiants';
 
 	protected $fillable = [
+		'email_submission_id',
 		'email'
 	];
 

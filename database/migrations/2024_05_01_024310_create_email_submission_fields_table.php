@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('email_submission_fields', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('email_submission_id')->references('id')->on('email_submissions');
+            $table->foreignId('email_submission_id')->references('id')->on('email_submissions')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });
