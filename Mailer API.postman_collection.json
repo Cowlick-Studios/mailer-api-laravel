@@ -448,59 +448,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Submit Form",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "amet-molestiae-sunt",
-									"value": "kaka1",
-									"type": "text"
-								},
-								{
-									"key": "est-vitae",
-									"value": "kaka2",
-									"type": "text"
-								},
-								{
-									"key": "soluta-quia",
-									"value": "kaka3",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/api/email_submission/submit/:submission_slug",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"email_submission",
-								"submit",
-								":submission_slug"
-							],
-							"variable": [
-								{
-									"key": "submission_slug",
-									"value": "saepe-aperiam-et-expedita-voluptas-non-ut-sint"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -577,6 +524,56 @@
 					],
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Form",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "t1",
+							"value": "haha",
+							"type": "text"
+						},
+						{
+							"key": "t2",
+							"value": "kaka",
+							"type": "text"
+						},
+						{
+							"key": "t3",
+							"value": "poop",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/submit/:submission_slug",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"submit",
+						":submission_slug"
+					],
+					"variable": [
+						{
+							"key": "submission_slug",
+							"value": "test"
+						}
 					]
 				}
 			},
