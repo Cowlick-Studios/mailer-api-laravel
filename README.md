@@ -37,6 +37,13 @@ php artisan key:generate --show
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
+## Application commands
+
+``` sh
+# Generate new user
+./vendor/bin/sail artisan app:create-new-user "User Nme" "user@example.com" "password"
+```
+
 ## Connections
 
 You can access the running application on port 80 of your local system, this can be done by simply going to [http://localhost/](http://localhost/)
