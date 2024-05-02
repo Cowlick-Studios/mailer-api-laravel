@@ -180,10 +180,12 @@ class EmailSubmissionController extends Controller
 				], 404);
 			}
 
-			if($request->host() != $emailSubmission->origin){
+			$originHost = parse_url($request->header('origin'), PHP_URL_HOST);
+
+			if($originHost != $emailSubmission->origin){
 				return Response([
 					'message' => 'Form submission cannot occur from this origin.',
-					'origin' => $request->host()
+					'origin' => $originHost
 				], 401);
 			}
 
