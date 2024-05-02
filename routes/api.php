@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
     ], 200); 
 })->middleware('auth:sanctum');
 
-Route::prefix('email_submission')->group(function() {
+Route::prefix('email_submission')->middleware('auth:sanctum')->group(function() {
     Route::get('/', [EmailSubmissionController::class, 'index']);
     Route::get('/{emailSubmission}', [EmailSubmissionController::class, 'show']);
     Route::post('/', [EmailSubmissionController::class, 'store']);
@@ -25,6 +25,4 @@ Route::prefix('email_submission')->group(function() {
     Route::delete('/{emailSubmission}/field/{field}', [EmailSubmissionController::class, 'removeField']);
     Route::post('/{emailSubmission}/recipiant', [EmailSubmissionController::class, 'addRecipiant']);
     Route::delete('/{emailSubmission}/recipiant/{recipiant}', [EmailSubmissionController::class, 'removeRecipiant']);
-})->middleware('auth:sanctum');
-
-// Route::post('/submit/{email_submission_name}', [EmailSubmissionController::class, 'submit']);
+});

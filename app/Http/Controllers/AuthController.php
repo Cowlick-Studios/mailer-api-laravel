@@ -27,4 +27,13 @@ class AuthController extends Controller
 			'message' => 'The provided credentials do not match our records.'
 		], 401);
 	}
+
+	public function deauthenticate(Request $request)
+	{
+		Auth::guard('web')->logout();
+		
+		return Response([
+			'message' => 'Successful logout!'
+		], 200);
+	}
 }
