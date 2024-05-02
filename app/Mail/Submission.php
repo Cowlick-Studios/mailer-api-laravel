@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
 use App\Models\EmailSubmission;
@@ -32,8 +33,25 @@ class Submission extends Mailable
      */
     public function envelope(): Envelope
     {
+
+        $replyToArr = [];
+
+        if(array_key_exists('email', $this->formData)){
+
+            $replyName = explode("@", $this->formData['email'])[0];
+
+            if(array_key_exists('name', $this->formData)){
+                $replyName = $this->formData['name'];
+            }
+
+            $replyToArr = [
+                new Address($this->formData['email'], $replyName),
+            ];
+        }
+
         return new Envelope(
             subject: "New email submission: {$this->emailSubmission->name}",
+            replyTo: $replyToArr
         );
     }
 
