@@ -44,6 +44,16 @@ php artisan key:generate --show
 ./vendor/bin/sail artisan app:create-new-user "User Nme" "user@example.com" "password"
 ```
 
+## Deployment
+
+To configure for deployemnt be sure to set the correct values in your .env to the following. Assuming your api is hosted at the subdomain of `api` and your SPA is hosted at the subdomain of `app`.
+
+``` sh
+APP_URL=https://api.mailer.com
+SANCTUM_STATEFUL_DOMAINS=app.mailer.com
+SESSION_DOMAIN=.mailer.com
+```
+
 ## Connections
 
 You can access the running application on port 80 of your local system, this can be done by simply going to [http://localhost/](http://localhost/)
