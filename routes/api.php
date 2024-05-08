@@ -21,6 +21,8 @@ Route::prefix('email_submission')->middleware('auth:sanctum')->group(function() 
     Route::patch('/{emailSubmission}', [EmailSubmissionController::class, 'update']);
     Route::delete('/{emailSubmission}', [EmailSubmissionController::class, 'detroy']);
 
+    Route::post('/{emailSubmission}/log/{emailSubmissionLog}/resend', [EmailSubmissionController::class, 'resend']);
+
     Route::post('/{emailSubmission}/field', [EmailSubmissionController::class, 'addField']);
     Route::delete('/{emailSubmission}/field/{field}', [EmailSubmissionController::class, 'removeField']);
     Route::post('/{emailSubmission}/recipiant', [EmailSubmissionController::class, 'addRecipiant']);

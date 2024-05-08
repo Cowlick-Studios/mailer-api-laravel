@@ -26,4 +26,8 @@ class EmailSubmission extends Model
 	public function recipiants(){
 		return $this->hasMany(EmailSubmissionRecipiant::class, 'email_submission_id', 'id');
 	}
+
+	public function logs(){
+		return $this->hasMany(EmailSubmissionLog::class, 'email_submission_id', 'id');
+	}
 }

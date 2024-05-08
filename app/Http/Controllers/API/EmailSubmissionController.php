@@ -13,7 +13,7 @@ use App\Mail\Submission;
 use App\Models\EmailSubmission;
 use App\Models\EmailSubmissionField;
 use App\Models\EmailSubmissionRecipiant;
-use GuzzleHttp\Psr7\Response;
+use App\Models\EmailSubmissionLog;
 
 class EmailSubmissionController extends Controller
 {
@@ -40,7 +40,7 @@ class EmailSubmissionController extends Controller
 	// Get individual submission + relations
 	public function show(EmailSubmission $emailSubmission){
 
-		$emailSubmission = EmailSubmission::where('id', $emailSubmission->id)->with(['fields', 'recipiants'])->first();
+		$emailSubmission = EmailSubmission::with(['logs'])->where('id', $emailSubmission->id)->with(['fields', 'recipiants'])->first();
 
 		return Response([
 			'message' => 'Single email_submissions.',
@@ -193,6 +193,35 @@ class EmailSubmissionController extends Controller
 
       foreach ($emailSubmission->fields as $field) {
         $formSubmissionObj[$field->name] = $request[$field->name];
+      }
+
+			$emailSubmissionLog = EmailSubmissionLog::create([
+				'email_submission_id' => $emailSubmission->id,
+				'submission_data' => $formSubmissionObj
+			]);
+			$emailSubmissionLog->save();
+
+      foreach ($emailSubmission->recipiants as $recipient) {
+				Mail::to($recipient)->send(new Submission($emailSubmission, $formSubmissionObj));
+      }
+
+      return response([
+        'message' => 'Email submission recieved.'
+      ], 200);
+
+    } catch (Exception $e) {
+      return response([
+        'message' => $e->getMessage()
+      ], 500);
+    }
+	}
+
+	public function resend(Request $request, EmailSubmission $emailSubmission, EmailSubmissionLog $emailSubmissionLog){
+		try {
+      $formSubmissionObj = [];
+
+      foreach ($emailSubmission->fields as $field) {
+        $formSubmissionObj[$field->name] = $emailSubmissionLog->submission_data[$field->name];
       }
 
       foreach ($emailSubmission->recipiants as $recipient) {
