@@ -28,3 +28,5 @@ Route::prefix('email_submission')->middleware('auth:sanctum')->group(function() 
     Route::post('/{emailSubmission}/recipiant', [EmailSubmissionController::class, 'addRecipiant']);
     Route::delete('/{emailSubmission}/recipiant/{recipiant}', [EmailSubmissionController::class, 'removeRecipiant']);
 });
+
+Route::post('/submit/{email_submission_name}', [EmailSubmissionController::class, 'submit']);
