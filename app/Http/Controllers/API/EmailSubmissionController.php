@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
 use App\Mail\Submission;
 
@@ -70,7 +71,9 @@ class EmailSubmissionController extends Controller
 	public function update(Request $request, EmailSubmission $emailSubmission){
 		$request->validate([
 			'name' => 'string|nullable',
-			'origin' => 'string|nullable'
+			'origin' => 'string|nullable',
+			'turnstile_enable' => 'boolean',
+			'turnstile_secret' => 'string'
 		]);
 
 		if ($request->filled('name')) {
@@ -79,6 +82,14 @@ class EmailSubmissionController extends Controller
 
 		if ($request->filled('name')) {
 			$emailSubmission->origin = $request->origin;
+		}
+
+		if ($request->filled('turnstile_enable')) {
+			$emailSubmission->turnstile_enable = $request->turnstile_enable;
+		}
+
+		if ($request->filled('turnstile_secret')) {
+			$emailSubmission->turnstile_secret = $request->turnstile_secret;
 		}
 
 		$emailSubmission->save();
@@ -171,8 +182,31 @@ class EmailSubmissionController extends Controller
 	// Public submit
 	public function submit(Request $request, string $email_submission_name){
 		try {
-
       $emailSubmission = EmailSubmission::with(['fields', 'recipiants'])->where('name', $email_submission_name)->first();
+
+			// Cloudflair turnstyle verification
+			if($emailSubmission->turnstile_enable){
+
+				if($request->has('cf-turnstile-response')){
+
+					$turnstileRes = Http::post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+						'secret' => $emailSubmission->turnstile_secret,
+						'response' => $request->input('cf-turnstile-response'),
+						'ip' => $request->ip()
+					]);
+
+					return Response([
+						'message' => 'turnstile test',
+						'res' => $turnstileRes
+					], 200);
+
+				} else {
+					return Response([
+						'message' => 'No cf-turnstile-response in request.'
+					], 404);
+				}
+			}
+			
 
 			if(!$emailSubmission){
 				return Response([

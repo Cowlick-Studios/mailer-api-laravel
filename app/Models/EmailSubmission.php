@@ -16,7 +16,9 @@ class EmailSubmission extends Model
 
 	protected $fillable = [
 		'name',
-		'origin'
+		'origin',
+		'turnstile_enable',
+		'turnstile_secret'
 	];
 
 	public function fields(){
