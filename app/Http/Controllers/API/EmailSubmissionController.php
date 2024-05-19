@@ -195,11 +195,12 @@ class EmailSubmissionController extends Controller
 						'ip' => $request->ip()
 					]);
 
-					return Response([
-						'message' => 'turnstile test',
-						'res' => $turnstileRes
-					], 200);
-
+					// View the response
+					if (!$turnstileRes->successful() || !$turnstileRes->json('success')) {
+						return Response([
+							'message' => 'turnstile could not be verified.',
+						], 404);
+					}
 				} else {
 					return Response([
 						'message' => 'No cf-turnstile-response in request.'
