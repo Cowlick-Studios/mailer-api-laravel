@@ -38,6 +38,7 @@ class CreateNewUser extends Command
         $user->save();
   
         $this->info('User "' . $this->argument('email') . '" created!');
+        $this->info("Password: {$this->argument('password')}");
         return;
     }
 }
