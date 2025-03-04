@@ -3,6 +3,10 @@ nixPkgs = ["...", "python311Packages.supervisor", "php82Extensions.redis"]
 
 [phases.build]
 cmds = [
+    "mkdir -p /app/storge/framework/views",
+    "mkdir -p /app/storge/framework/cache",
+    "mkdir -p /app/storge/framework/sessions",
+    "mkdir -p /app/bootstrap/cache",
     "chmod -R 755 /app",
     "chmod -R 775 /app/storage",
     "chmod -R 775 /app/bootstrap/cache",
