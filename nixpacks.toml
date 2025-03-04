@@ -11,6 +11,13 @@ cmds = [
     "..."
 ]
 
+[phases.postbuild]
+cmds = [
+    "php /app/artisan migrate --force",
+    "php /app/artisan cache:clear"
+]
+dependsOn = ["build"]
+
 [start]
 cmd = '/assets/start.sh'
 
@@ -19,7 +26,7 @@ cmd = '/assets/start.sh'
 #!/bin/bash
 
 # Transform the nginx configuration
-node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
+node /ass4fcbdb434c09ets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
 
 # Start supervisor
 supervisord -c /etc/supervisord.conf -n
