@@ -26,7 +26,7 @@ cmd = '/assets/start.sh'
 #!/bin/bash
 
 # Transform the nginx configuration
-node /ass4fcbdb434c09ets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
+node /assets/scripts/prestart.mjs /assets/nginx.template.conf /etc/nginx.conf
 
 # Start supervisor
 supervisord -c /etc/supervisord.conf -n
