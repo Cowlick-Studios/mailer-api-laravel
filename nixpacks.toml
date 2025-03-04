@@ -13,6 +13,7 @@ cmds = [
     "chmod -R 775 /app/storage/framework/cache",
     "chmod -R 775 /app/storage/framework/sessions",
     "chmod -R 775 /app/bootstrap/cache",
+    "chown -R www-data:www-data /app"
     "mkdir -p /etc/supervisor/conf.d/",
     "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
     "cp /assets/supervisord.conf /etc/supervisord.conf",
