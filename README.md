@@ -70,3 +70,12 @@ The connection details for the docker environment is taken from the project .env
 | Mailpit SMTP      | localhost:1025 |
 | Mailpit Dashboard | localhost:8025 |
 |                   |                |
+
+## Coolify
+
+One issue with deploying on coolify is once you create persistent sotrage for the /app/storage directory you nee dto create the framework cache files.
+
+``` sh
+# Run in the persistent mount on home in /app/storage dir
+mkdir -p framework/{views,cache,sessions}
+```
