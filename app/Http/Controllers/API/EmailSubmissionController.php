@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 use App\Mail\Submission;
 
@@ -260,7 +261,11 @@ class EmailSubmissionController extends Controller
       }
 
       foreach ($emailSubmission->recipiants as $recipient) {
+				Log::info('Sending email to:', ['email' => $recipient]);
+
 				Mail::to($recipient)->send(new Submission($emailSubmission, $formSubmissionObj));
+				
+				Log::info('Email sent to:', ['email' => $recipient]);
       }
 
       return response([
@@ -268,6 +273,8 @@ class EmailSubmissionController extends Controller
       ], 200);
 
     } catch (Exception $e) {
+			Log::error('Email sending error:', ['error' => $e->getMessage()]);
+
       return response([
         'message' => $e->getMessage()
       ], 500);
